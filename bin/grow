@@ -1,0 +1,4 @@
+#!/bin/bash
+
+d=$(dirname $0)
+/usr/bin/env python3 $d/../grow.py $@
