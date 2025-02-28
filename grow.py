@@ -5,6 +5,7 @@ import logging
 import subprocess
 
 import click
+import starlette.requests
 from fasthtml.common import (
     A,
     Aside,
@@ -22,7 +23,6 @@ from fasthtml.common import (
     Ul,
     serve,
 )
-import starlette.requests
 
 logger = logging.getLogger("uvicorn")
 
@@ -41,12 +41,14 @@ def make():
     )
     mathjax = Script(src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js")
     my_css = (
-        Style("""
+        Style(
+            """
 i.fa-regular {
     width: 1.5rem;
     text-align: center;
 }
-"""),
+"""
+        ),
     )
     return FastHTML(hdrs=(my_css, bulma, font_awesome, mathjax), live=True)
 
@@ -125,7 +127,7 @@ class FileSystem:
         ls = []
         ls += glob.glob("**/*.md", root_dir=str(path), recursive=True)
         ls += glob.glob("**/*.mkd", root_dir=str(path), recursive=True)
-        ls = [f"{p.split("/")[0]}/" if "/" in p else p for p in ls]
+        ls = [f"{p.split('/')[0]}/" if "/" in p else p for p in ls]
         ls = [".."] + sorted(set(ls))
         ls = [Path(p) for p in ls]
         logger.info("filelist: %s => %s", path, ls)
