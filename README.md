@@ -1,5 +1,9 @@
 # grow.md.fasthtml
 
+> [!WARNING]
+> このレポジトリはもう管理していません. This is no longer maintained.
+> Please check [cympfh/marvu](https://github.com/cympfh/marvu).
+
 ## What?
 
 A markdown viwer.
